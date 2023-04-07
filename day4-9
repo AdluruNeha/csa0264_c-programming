@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+// Declare the union
+union student {
+    char name[50];
+    float gpa;
+};
+
+int main() {
+    // Declare a variable of type union student
+    union student s;
+
+    // Prompt the user to enter the student's name and GPA
+    printf("Enter the student's name: ");
+    fgets(s.name, 50, stdin);
+
+    printf("Enter the student's GPA: ");
+    scanf("%f", &s.gpa);
+
+    // Print the student's name and GPA
+    printf("Student's name: %s\n", s.name);
+    printf("Student's GPA: %f\n", s.gpa);
+
+    return 0;
+}

@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+// Declare the union
+union data {
+    int i;
+    float f;
+};
+
+int main() {
+    // Declare a variable of type union data
+    union data d;
+
+    // Prompt the user to enter a value
+    printf("Enter a value: ");
+
+    // Read the value from the user
+    if (scanf("%d", &d.i) == 1) {
+        // If the user entered an integer, print it as an integer
+        printf("You entered an integer: %d\n", d.i);
+    } else if (scanf("%f", &d.f) == 1) {
+        // If the user entered a float, print it as a float
+        printf("You entered a float: %f\n", d.f);
+    } else {
+        // If the user did not enter a valid number, print an error message
+        printf("Invalid input\n");
+    }
+
+    return 0;
+}

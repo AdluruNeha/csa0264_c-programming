@@ -1,0 +1,26 @@
+#include <stdio.h>
+
+int main() {
+    FILE *fp;
+    int num_records = 0;
+    fp = fopen("data.bin", "rb");
+    if (fp == NULL) {
+        printf("Error: Could not open file.");
+        return 1;
+    }
+
+    fread(&num_records, sizeof(int), 1, fp);
+    printf("Number of records: %d\n", num_records);
+    for (int i = 0; i < num_records; i++) {
+        int record_id = 0;
+        float record_value = 0.0f;
+        fread(&record_id, sizeof(int), 1, fp);
+        fread(&record_value, sizeof(float), 1, fp);
+        printf("Record %d: %d, %.2f\n", i+1, record_id, record_value);
+    }
+
+    // Close file
+    fclose(fp);
+
+    return 0;
+}

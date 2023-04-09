@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
+int main() {
+    FILE *fp_in, *fp_out;
+    int count[26] = {0};
+    char c;
+
+   
+    fp_in = fopen("data.txt", "r");
+    if (fp_in == NULL) {
+        printf("Error opening input file.\n");
+        exit(1);
+    }
+
+  
+    while ((c = fgetc(fp_in)) != EOF) {
+        if (isalpha(c)) { 
+            count[tolower(c) - 'a']++;
+        }
+    }
+
+   
+    fclose(fp_in);
+
+   
+    fp_out = fopen("statistics.txt", "w");
+    if (fp_out == NULL) {
+        printf("Error opening output file.\n");
+        exit(1);
+    }
+
+   
+    for (int i = 0; i < 26; i++) {
+        fprintf(fp_out, "%c: %d\n", 'a' + i, count[i]);
+    }
+
+   
+    fclose(fp_out);
+
+    return 0;
+}
